@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Zaid AI — Free AI Video Studio</title>
+<style>
+:root{--bg:#0b1020;--panel:#131d30;--panel2:#202c40;--text:#f7f8ff;--muted:#b8c4d9;--accent:#7257e8;--line:#344159}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#25204d 0,transparent 35%),var(--bg);color:var(--text);font:16px/1.5 system-ui,sans-serif}
+header{max-width:980px;margin:auto;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:11px;font-size:1.35rem;font-weight:800}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#7257e8,#3a8dde);display:grid;place-items:center;font-size:24px}
+select,button,textarea,input{font:inherit}.lang,.field{background:#0c1424;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px}
+main{max-width:850px;margin:20px auto;padding:0 16px 48px}.hero{text-align:center;padding:32px 10px 24px}.eyebrow{color:#b5a9ff;font-size:.8rem;font-weight:800;letter-spacing:.1em}h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.12;margin:12px 0}p{color:var(--muted)}.panel{background:rgba(19,29,48,.96);border:1px solid var(--line);border-radius:22px;padding:21px;margin-top:18px}.tabs{display:flex;gap:9px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 14px;border-radius:12px;cursor:pointer}.tab.active{background:var(--accent)}label{display:block;font-weight:700;margin:17px 0 8px}textarea{width:100%;min-height:130px;background:#0c1424;color:white;border:1px solid var(--line);border-radius:13px;padding:13px}.drop{border:1px dashed #65708b;border-radius:13px;padding:18px;text-align:center;background:#0c1424}.drop input{max-width:100%;margin-top:10px}.preview{max-width:100%;max-height:260px;display:block;margin:14px auto 0;border-radius:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{width:100%}.primary{width:100%;border:0;border-radius:13px;background:linear-gradient(90deg,#7257e8,#4c79e8);color:white;font-weight:800;padding:15px;margin-top:20px;cursor:pointer}.note{font-size:.88rem}.status{display:none;margin-top:14px;padding:13px;border-radius:12px;background:#202c40;overflow-wrap:anywhere}.pill{display:inline-block;background:#183a2b;color:#a5f3c5;border-radius:99px;padding:5px 10px;font-size:.82rem}footer{text-align:center;color:#8492ab;font-size:.85rem;padding:24px}@media(max-width:560px){.row{grid-template-columns:1fr}.panel{padding:16px}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">✦</div><span>Zaid AI</span></div><select id="language" class="lang" aria-label="Language"><option value="hi">हिंदी</option><option value="en">English</option></select></header>
+<main>
+<section class="hero"><div class="eyebrow">AI VIDEO STUDIO</div><h1 id="headline">अपनी कल्पना को वीडियो बनाएँ</h1><p id="subhead">टेक्स्ट प्रॉम्प्ट या फोटो से वीडियो बनाने की शुरुआत करें।</p><span class="pill" id="pill">यूज़र के लिए मुफ़्त इस्तेमाल का लक्ष्य</span></section>
+<section class="panel">
+<div class="tabs"><button class="tab active" id="textTab" type="button">✍️ Text to Video</button><button class="tab" id="photoTab" type="button">🖼️ Photo to Video</button></div>
+<form id="videoForm">
+<label id="promptLabel" for="prompt">वीडियो का प्रॉम्प्ट</label>
+<textarea id="prompt" maxlength="3000" required placeholder="उदाहरण: अमीर आलू और शेरू अपने सुनहरे महल के बाहर मिलते हैं। रंगीन 3D कार्टून..."></textarea>
+<div id="uploadArea" hidden><label id="imageLabel" for="imageFile">फोटो चुनें</label><div class="drop"><div id="dropText">JPG, PNG या WEBP इमेज अपलोड करें</div><input id="imageFile" type="file" accept="image/png,image/jpeg,image/webp"><img id="preview" class="preview" alt="Image preview" hidden></div></div>
+<div class="row"><div><label id="durationLabel" for="duration">वीडियो की अवधि (अधिकतम 60 सेकंड)</label><select id="duration" class="field"><option value="10">10 सेकंड</option><option value="20">20 सेकंड</option><option value="30">30 सेकंड</option><option value="45">45 सेकंड</option><option value="60" selected>60 सेकंड (1 मिनट)</option></select></div>
+<div><label id="aspectLabel" for="aspect">वीडियो का आकार</label><select id="aspect" class="field"><option value="9:16">9:16 — Shorts / Reels</option><option value="16:9">16:9 — YouTube</option><option value="1:1">1:1 — Square</option></select></div></div>
+<button class="primary" id="generate" type="submit">✦ वीडियो जनरेट करें</button>
+<p class="note" id="disclaimer">डेमो मोड: वीडियो इंजन अभी कनेक्ट नहीं है। वास्तविक जनरेशन के लिए बैकएंड और AI मॉडल चाहिए। 60 सेकंड का विकल्प केवल अनुरोधित अवधि है, इसकी जनरेशन अभी सक्रिय नहीं है।</p><div id="status" class="status" role="status"></div>
+</form></section></main>
+<footer>© <span id="year"></span> Zaid AI · No subscription planned for users</footer>
+<script>
+const $=id=>document.getElementById(id);let mode='text';
+const strings={
+hi:{headline:'अपनी कल्पना को वीडियो बनाएँ',subhead:'टेक्स्ट प्रॉम्प्ट या फोटो से वीडियो बनाने की शुरुआत करें।',pill:'यूज़र के लिए मुफ़्त इस्तेमाल का लक्ष्य',promptLabel:'वीडियो का प्रॉम्प्ट',placeholder:'उदाहरण: अमीर आलू और शेरू अपने सुनहरे महल के बाहर मिलते हैं। रंगीन 3D कार्टून...',imageLabel:'फोटो चुनें',dropText:'JPG, PNG या WEBP इमेज अपलोड करें',durationLabel:'वीडियो की अवधि (अधिकतम 60 सेकंड)',aspectLabel:'वीडियो का आकार',ten:'10 सेकंड',twenty:'20 सेकंड',thirty:'30 सेकंड',fortyfive:'45 सेकंड',sixty:'60 सेकंड (1 मिनट)',generate:'✦ वीडियो जनरेट करें',disclaimer:'डेमो मोड: वीडियो इंजन अभी कनेक्ट नहीं है। वास्तविक जनरेशन के लिए बैकएंड और AI मॉडल चाहिए। 60 सेकंड का विकल्प केवल अनुरोधित अवधि है, इसकी जनरेशन अभी सक्रिय नहीं है।',needImage:'कृपया पहले फोटो चुनें।',notReady:'AI वीडियो इंजन अभी कनेक्ट नहीं है। वेबसाइट का इंटरफेस तैयार है, लेकिन वीडियो जनरेशन के लिए बैकएंड मॉडल जोड़ना बाकी है।',textTab:'✍️ Text to Video',photoTab:'🖼️ Photo to Video'},
+en:{headline:'Turn your imagination into video',subhead:'Start creating from a text prompt or an image.',pill:'Goal: free access for users',promptLabel:'Video prompt',placeholder:'Example: Rich Aloo and Sheru meet outside a golden palace. Colorful 3D cartoon...',imageLabel:'Choose a photo',dropText:'Upload a JPG, PNG or WEBP image',durationLabel:'Video duration (maximum 60 seconds)',aspectLabel:'Aspect ratio',ten:'10 seconds',twenty:'20 seconds',thirty:'30 seconds',fortyfive:'45 seconds',sixty:'60 seconds (1 minute)',generate:'✦ Generate video',disclaimer:'Demo mode: the video engine is not connected yet. Real generation requires a backend and AI model. The 60-second option is a requested duration only; generation is not active yet.',needImage:'Please choose an image first.',notReady:'The AI video engine is not connected yet. The interface is ready, but a backend model must be added for real generation.',textTab:'✍️ Text to Video',photoTab:'🖼️ Photo to Video'}};
+function setLang(l){let s=strings[l];document.documentElement.lang=l;['headline','subhead','pill','promptLabel','imageLabel','dropText','durationLabel','aspectLabel','generate','disclaimer','textTab','photoTab'].forEach(k=>$(k).textContent=s[k]);$('prompt').placeholder=s.placeholder;let opts=$('duration').options;opts[0].textContent=s.ten;opts[1].textContent=s.twenty;opts[2].textContent=s.thirty;opts[3].textContent=s.fortyfive;opts[4].textContent=s.sixty;}
+$('language').addEventListener('change',e=>setLang(e.target.value));
+function setMode(m){mode=m;$('textTab').classList.toggle('active',m==='text');$('photoTab').classList.toggle('active',m==='photo');$('uploadArea').hidden=m!=='photo';$('imageFile').required=m==='photo';}
+$('textTab').onclick=()=>setMode('text');$('photoTab').onclick=()=>setMode('photo');
+$('imageFile').addEventListener('change',()=>{let f=$('imageFile').files[0];if(f&&f.type.startsWith('image/')){$('preview').src=URL.createObjectURL(f);$('preview').hidden=false;}});
+$('videoForm').addEventListener('submit',e=>{e.preventDefault();let l=$('language').value;if(mode==='photo'&&!$('imageFile').files[0]){$('status').textContent=strings[l].needImage;}else{$('status').textContent=strings[l].notReady;}$('status').style.display='block';});
+$('year').textContent=new Date().getFullYear();setLang('hi');
+</script></body></html>
